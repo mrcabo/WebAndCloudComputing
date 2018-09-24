@@ -1,0 +1,13 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  
+  .navbar-default {
+      background-color: #48a1c4;
+      border-color: #E7E7E7;
+  }
+  
+  .navbar-default .navbar-brand {
+      color: white;
+  }
