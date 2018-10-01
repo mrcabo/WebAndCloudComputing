@@ -26,7 +26,7 @@ class Navigation extends React.Component {
               
               {
                 this.props.isAuthenticated ?
-                <li>onClick={this.props.logout}Logout</li>
+                <li><a href="#" onClick={this.props.logout}>Logout</a></li>
                 :
                 <li><Link to="/login">Login</Link></li>
               }
@@ -46,4 +46,10 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Navigation));
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation));
