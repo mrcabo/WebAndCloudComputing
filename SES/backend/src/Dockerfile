@@ -3,8 +3,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /backend
 WORKDIR /backend
-COPY . /backend/
-
+COPY requirements.txt /backend
 RUN pip3 install -r requirements.txt
 
-CMD ["python3", "manage.py", "runserver", "127.0.0.1:8000"]
+CMD ["python", "manage.py", "runserver"]

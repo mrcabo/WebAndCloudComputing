@@ -3,6 +3,8 @@ import { Form, Icon, Input, Button, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import * as actions from '../store/actions/auth';
+import '../styles/App.css';
+import '../styles/Gui.css';
 
 const FormItem = Form.Item;
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
@@ -38,7 +40,7 @@ class NormalLoginForm extends React.Component {
 
                 :
 
-                <Form onSubmit={this.handleSubmit} className="login-form">
+                <Form onSubmit={this.handleSubmit} className="login-form" style={{ margin: '100px' }}>
 
                     <FormItem>
                     {getFieldDecorator('userName', {

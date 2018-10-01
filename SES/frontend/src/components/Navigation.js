@@ -23,14 +23,17 @@ class Navigation extends React.Component {
             <ul className="nav navbar-nav navbar-right">
 
               <li><Link to="/">Home</Link></li>
-              
+              <li><Link to="/myhouse">My House</Link></li>
+              <li><Link to="/marketplace">Marketplace</Link></li>
               {
                 this.props.isAuthenticated ?
                 <li><a href="#" onClick={this.props.logout}>Logout</a></li>
+                
                 :
                 <li><Link to="/login">Login</Link></li>
               }
-        
+
+  
             </ul>
           </div>
         </div>

@@ -3,16 +3,21 @@ version: '3'
 services:
 
   django:
-    build: ./backend/src
+    build: ./backend
     command: ["python3", "manage.py", "runserver"]
-
+    volumes:
+      - ./backend:/backend
     ports:
       - "8000:8000"
 
   frontend:
     build: ./frontend
     command: ["npm", "start"]
-
+    volumes:
+      - ./frontend:/usr/src/app
+      - node-modules:/usr/src/app/node_modules
     ports:
       - "3000:3000"
 
+volumes:
+  node-modules:

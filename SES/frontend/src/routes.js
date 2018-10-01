@@ -5,6 +5,8 @@ import { Route } from 'react-router-dom';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 import Home from './containers/Home';
+import MyHouse from './containers/MyHouse';
+import Marketplace from './containers/Marketplace';
 
 const BaseRouter = () => (
     <div>
@@ -13,6 +15,8 @@ const BaseRouter = () => (
         <Route exact path='/' component={Home} />
         <Route exact path='/login/' component={Login} />
         <Route exact path='/signup/' component={Signup} />
+        <Route exact path='/myhouse/' component={MyHouse} />
+        <Route exact path='/marketplace/' component={Marketplace} />
     </div>
 );
 
