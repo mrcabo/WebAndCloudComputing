@@ -1,6 +1,20 @@
 import React from 'react';
+import axios from 'axios';
 
 class MyHouse extends React.Component {
+
+
+    state = {
+        money: 0
+    }
+
+    componentDidMount() {
+        axios.get(`http://127.0.0.1:8000/api/1`)
+            .then(res => {
+                this.setState({ money: res.data.amount });
+            })
+    }
+
     render() {
       return (
         
@@ -43,6 +57,7 @@ class MyHouse extends React.Component {
             <div class="col-md-6">
             <h3>
                 Money 
+                <p>{this.state.money}</p>
             </h3>
             </div>
             <div class="col-md-6">
