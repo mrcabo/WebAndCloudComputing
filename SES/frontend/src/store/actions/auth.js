@@ -24,6 +24,7 @@ export const authFail = error => {
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
+    localStorage.removeItem('username');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -46,9 +47,11 @@ export const authLogin = (username, password) => {
         })
         .then(res => {
             const token = res.data.key;
+            const name = username;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('username', name);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
         })
@@ -56,6 +59,11 @@ export const authLogin = (username, password) => {
             dispatch(authFail(err))
         })
     }
+}
+
+export const getUsername = () => {
+    const username = localStorage.getItem('username');
+    return username;
 }
 
 export const authSignup = (username, email, password1, password2) => {

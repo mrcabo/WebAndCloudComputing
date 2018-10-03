@@ -3,9 +3,12 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
+import axios from 'axios';
 
 
 class Navigation extends React.Component {
+  
+  
   render() {
     return (
       <div className="navbar-default navbar-fixed-top" role="navigation">
@@ -27,9 +30,8 @@ class Navigation extends React.Component {
               <li><Link to="/marketplace">Marketplace</Link></li>
               {
                 this.props.isAuthenticated ?
-                <li><a href="#" onClick={this.props.logout}>Logout</a></li>
-                
-                :
+                <li><a href="#" onClick={this.props.logout}>Logout {actions.getUsername()}</a> </li>
+                : 
                 <li><Link to="/login">Login</Link></li>
               }
 

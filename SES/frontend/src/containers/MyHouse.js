@@ -5,15 +5,24 @@ class MyHouse extends React.Component {
 
 
     state = {
-        money: 0
+        money: 0,
+        battery: 0
     }
 
+
     componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/api/1`)
-            .then(res => {
-                this.setState({ money: res.data.amount });
-            })
-    }
+        axios.all([
+            axios.get('http://127.0.0.1:8000/api/money/1'),
+            axios.get('http://127.0.0.1:8000/api/battery/1')
+          ])
+          .then(axios.spread((moneyRes, batteryRes) => {
+            this.setState({ money: moneyRes.data.amount, battery: batteryRes.data.level });
+            // do something with both responses
+          }));
+        
+        }
+
+
 
     render() {
       return (
@@ -63,6 +72,7 @@ class MyHouse extends React.Component {
             <div class="col-md-6">
             <h3>
                 Battery
+                <p>{this.state.battery}</p>
             </h3>
             </div>
             </center>
