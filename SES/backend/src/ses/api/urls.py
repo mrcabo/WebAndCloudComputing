@@ -1,12 +1,6 @@
 from ses.api.views import MoneyViewSet, BatteryViewSet, ExampleModelViewSet, ConsumptionRateViewSet
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include, re_path
-
-router = DefaultRouter()
-router.register(r'', MoneyViewSet, base_name='money')
-router.register(r'', BatteryViewSet, base_name='battery')
-urlpatterns = router.urls
-
 # from django.urls import path
 
 from .views import (
@@ -18,10 +12,15 @@ from .views import (
       ExampleModelDetailView,
       ConsumptionRateListView,
       ConsumptionRateDetailView
-#     MoneyCreateView,
-#     MoneyUpdateView,
-#     MoneyDeleteView
+      # MoneyCreateView,
+      # MoneyUpdateView,
+      # MoneyDeleteView
  )
+
+router = DefaultRouter()
+router.register(r'', MoneyViewSet, base_name='money')
+router.register(r'', BatteryViewSet, base_name='battery')
+urlpatterns = router.urls
 
 
 urlpatterns = [
