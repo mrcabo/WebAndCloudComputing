@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from ses.models import Money, Battery, ExampleModel, ConsumptionRate
-from .serializers import MoneySerializer, BatterySerializer, ExampleModelSerializer, ConsumptionRateSerializer
+from ses.models import Money, Battery, ExampleModel, ConsumptionRate, Household
+from .serializers import MoneySerializer, BatterySerializer, ExampleModelSerializer,ConsumptionRateSerializer, HouseholdSerializer
 
 from rest_framework.generics import (
     ListAPIView,
@@ -29,6 +29,11 @@ class ExampleModelViewSet(viewsets.ModelViewSet):
 class ConsumptionRateViewSet(viewsets.ModelViewSet):
     serializer_class = ConsumptionRateSerializer
     queryset = ConsumptionRate.objects.all()
+
+
+class HouseholdViewSet(viewsets.ModelViewSet):
+    serializer_class = HouseholdSerializer
+    queryset = Household.objects.all()
 
 
 class MoneyListView(ListAPIView):
@@ -69,6 +74,17 @@ class ConsumptionRateListView(ListAPIView):
 class ConsumptionRateDetailView(RetrieveAPIView):
     queryset = ConsumptionRate.objects.all()
     serializer_class = ConsumptionRateSerializer
+
+
+class HouseholdListView(ListAPIView):
+    queryset = Household.objects.all()
+    serializer_class = HouseholdSerializer
+
+
+class HouseholdDetailView(RetrieveAPIView):
+    queryset = Household.objects.all()
+    serializer_class = HouseholdSerializer
+
 
 # class MoneyUpdateView(UpdateAPIView):
 #     queryset = Money.objects.all()

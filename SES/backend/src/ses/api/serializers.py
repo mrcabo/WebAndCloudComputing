@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ses.models import Money, Battery, ExampleModel, ConsumptionRate
+from ses.models import Money, Battery, Household
 from rest_auth.models import TokenModel
 from django.contrib.auth.models import User
 
@@ -16,6 +16,12 @@ class BatterySerializer(serializers.ModelSerializer):
         model = Battery
         fields = ('id', 'level')
 
+
+class HouseholdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Household
+        fields = ('id', 'dummy')
+        # fields = ('username', 'email', 'users_firstName', 'users_lastName')
 
 class ExampleModelSerializer(serializers.Serializer):
     example_id = serializers.UUIDField()

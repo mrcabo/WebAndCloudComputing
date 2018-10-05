@@ -33,18 +33,22 @@ ALLOWED_HOSTS = ['justdjango-react-django-app.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django_cassandra_engine',
+    'djongo',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
     'corsheaders',
+
     'rest_auth',
     'rest_auth.registration',
     'rest_framework',
@@ -95,8 +99,8 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'usersdb',
     },
     'cassandra': {
         'ENGINE': 'django_cassandra_engine',
@@ -169,9 +173,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
