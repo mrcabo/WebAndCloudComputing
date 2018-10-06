@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import * as tradeActions from '../store/actions/trade';
 import { connect } from 'react-redux';
 import { Form, Icon, Input, Button, Spin } from 'antd';
 import { createForm, formShape } from 'rc-form';
