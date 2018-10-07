@@ -2,5 +2,3 @@
 **/.idea
 **/myvenv
 **/venv
-**/migrations
-**/*.sqlite3

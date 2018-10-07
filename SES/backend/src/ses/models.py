@@ -17,14 +17,10 @@ class ConsumptionRate(DjangoCassandraModel):
 
 
 class Household(models.Model):
-    dummy = models.CharField(max_length=50)
-    # username = models.CharField(primary_key=True, max_length=20, unique=True)
-    # email = models.EmailField(unique=True, blank=False)
-    # users_firstName = models.CharField(max_length=50)
-    # users_lastName = models.CharField(max_length=50)
-
-    def __int__(self):
-        return self.dummy
+    user_id = models.CharField(primary_key=True, max_length=20, unique=True)
+    email = models.EmailField(unique=True)
+    users_firstName = models.CharField(max_length=50)
+    users_lastName = models.CharField(max_length=50)
 
 
 class Money(models.Model):

@@ -20,8 +20,9 @@ class BatterySerializer(serializers.ModelSerializer):
 class HouseholdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Household
-        fields = ('id', 'dummy')
-        # fields = ('username', 'email', 'users_firstName', 'users_lastName')
+        # fields = ('id', 'dummy')
+        fields = ('user_id', 'email', 'users_firstName', 'users_lastName')
+
 
 class ExampleModelSerializer(serializers.Serializer):
     example_id = serializers.UUIDField()
