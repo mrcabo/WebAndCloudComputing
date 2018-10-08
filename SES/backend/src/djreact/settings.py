@@ -100,7 +100,12 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'usersdb',
+        'NAME': 'DjongoCluster',
+        'HOST': 'djongocluster-shard-00-00-7w68m.mongodb.net',
+        'PORT': 27017,
+        'USER': 'SES-admin',
+        'PASSWORD': 'adminadmin',
+        'SSL': True,
     },
     'cassandra': {
         'ENGINE': 'django_cassandra_engine',
