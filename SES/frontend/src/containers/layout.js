@@ -20,11 +20,9 @@ class CustomLayout extends React.Component {
       <div>
 
         <Navigation/>
-
-
+        <div className="container">
         {this.props.children}
-  
-
+        </div>
       </div>
       </Layout>
     );

@@ -1,0 +1,22 @@
+Open terminal 1:
+
+-Go inside backend
+-Run virtualenv:
+source myvenv/bin/activate (if not installed create one (python -m venv myvenv))
+-Go inside src
+
+-Run:
+pip3 install -r requirements.txt
+
+-Run:
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py sync_cassandra
+python3 manage.py runserver
+
+
+
+Open terminal 2:
+go inside frontend
+run npm i
+run npm start
