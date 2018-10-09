@@ -109,11 +109,12 @@ DATABASES = {
     },
     'cassandra': {
         'ENGINE': 'django_cassandra_engine',
-        'NAME': 'dbTestnow',
+        'NAME': 'dbTimeData',
         'USER': 'user',
         'PASSWORD': 'pass',
-        'TEST_NAME': 'test_dbTestnow',
-        'HOST': '127.0.0.1',
+        'TEST_NAME': 'test_dbTimeData',
+        'HOST': '35.167.66.197',
+        # 'PORT': 9042,
         'OPTIONS': {
             'replication': {
                 'strategy_class': 'SimpleStrategy',
