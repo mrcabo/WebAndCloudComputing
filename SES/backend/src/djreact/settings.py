@@ -113,7 +113,7 @@ DATABASES = {
         'USER': 'user',
         'PASSWORD': 'pass',
         'TEST_NAME': 'test_dbTimeData',
-        'HOST': '35.167.66.197',
+        'HOST': 'ec2-3-120-207-159.eu-central-1.compute.amazonaws.com',
         # 'PORT': 9042,
         'OPTIONS': {
             'replication': {
@@ -193,4 +193,3 @@ CORS_ORIGIN_ALLOW_ALL = True
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-

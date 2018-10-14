@@ -1,0 +1,5 @@
+First node:
+docker run --name node1-cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=<VM-IP-address> -p 7000:7000 -p 9042:9042 cassandra:latest
+
+Following nodes:
+docker run --name node<node-number>-cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=<VM-IP-address> -p 7000:7000 -p 9042:9042 -e CASSANDRA_SEEDS=<node1-VM-IP-address> cassandra:latest

@@ -1,9 +1,0 @@
-Prerequisites:
-
-	*Java 8 needed 
-	*For using cqlsh, the latest version of Python 2.7
-
-
-http://cassandra.apache.org/download/
-
-https://www.vultr.com/docs/how-to-install-apache-cassandra-3-11-x-on-ubuntu-16-04-lts

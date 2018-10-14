@@ -1,0 +1,21 @@
+##########################
+|     Useful commands    |
+##########################
+
+
+Docker:
+  # Delete all containers
+    $ docker rm $(docker ps -a -q)
+  # Delete all images
+    $ docker rmi $(docker images -q)
+  # Executing the Docker Command Without Sudo
+    $ sudo usermod -aG docker ${USER}
+  # Install Docker
+    $ sudo apt update
+    $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    $ sudo apt update
+    $ sudo apt install docker-ce
+  # Container shell access
+    $ docker exec -it <container-name> bash
