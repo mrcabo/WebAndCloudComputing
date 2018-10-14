@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth';
 
 class MyHouse extends React.Component {
 
