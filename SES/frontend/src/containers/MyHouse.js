@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class MyHouse extends React.Component {
 
@@ -17,9 +19,13 @@ class MyHouse extends React.Component {
 
 
     componentDidMount() {
+        const id = actions.getUserID()
+        const moneyurl = ' http://127.0.0.1:8000/api/money/' + id;
+        const batteryurl = ' http://127.0.0.1:8000/api/battery/' + id;
+
         axios.all([
-            axios.get('http://127.0.0.1:8000/api/money/1'),
-            axios.get('http://127.0.0.1:8000/api/battery/1'),
+            axios.get(moneyurl),
+            axios.get(batteryurl),
             axios.get('http://127.0.0.1:8000/api/energyconsumption/1'),
             axios.get('http://127.0.0.1:8000/api/energyproduction/1'),
             axios.get('http://127.0.0.1:8000/api/stove/1'),
@@ -74,14 +80,29 @@ class MyHouse extends React.Component {
         <div class="row">
         <center>
             <div class="col-md-6">
+                {
+                this.props.isAuthenticated ?
+                <div>
                 <h3>Money</h3>
                 <p>{this.state.money}</p>
                 <img src="img/moneySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                </div>
+                :
+                <h3>Login to see info</h3>
+                }
+
             </div>
             <div class="col-md-6">
+                {
+                this.props.isAuthenticated ?
+                <div>
                 <h3>Battery</h3>
                 <p style={(this.state.battery < 15)? {color: "orange"}:{color: "green"}}>{this.state.battery} kW·h</p> 
                 <img src="img/batterySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                </div>
+                :
+                <h3>Login to see info</h3>
+                }
             </div>
             </center>
         </div>
@@ -121,4 +142,12 @@ class MyHouse extends React.Component {
     }
   }
   
-  export default MyHouse;
+  const mapStateToProps = state => {
+    return {
+      isAuthenticated: state.token !== null
+    }
+  }
+  
+  
+ // export default MyHouse;
+  export default withRouter(connect(mapStateToProps, null)(MyHouse));

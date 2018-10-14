@@ -188,6 +188,10 @@ REST_FRAMEWORK = {
     )
 }
 
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'token_serializer.TokenSerializer'
+}
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 ACCOUNT_EMAIL_REQUIRED = False
