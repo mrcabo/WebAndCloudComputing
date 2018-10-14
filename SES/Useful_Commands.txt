@@ -3,19 +3,33 @@
 ##########################
 
 
+****************
 Docker:
-  # Delete all containers
-    $ docker rm $(docker ps -a -q)
-  # Delete all images
-    $ docker rmi $(docker images -q)
-  # Executing the Docker Command Without Sudo
-    $ sudo usermod -aG docker ${USER}
-  # Install Docker
-    $ sudo apt update
-    $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    $ sudo apt update
-    $ sudo apt install docker-ce
-  # Container shell access
-    $ docker exec -it <container-name> bash
+****************
+
+## Delete all containers
+docker rm $(docker ps -a -q)
+
+## Delete all images
+docker rmi $(docker images -q)
+
+## Executing the Docker Command Without Sudo
+sudo usermod -aG docker ${USER}
+
+## Install Docker
+sudo apt update
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update
+sudo apt install docker-ce
+
+## Container shell access
+docker exec -it <container-name> bash
+
+****************
+Mongo
+****************
+
+## Create mongo node:
+docker run --name mongo1 --hostname="node1.wacc.com" --add-host node1.wacc.com:18.185.131.5 --add-host node2.wacc.com:54.93.227.121 --add-host node3.wacc.com:54.93.233.22 -p 27017:27017 -d mongo:latest --replSet "rs0"
