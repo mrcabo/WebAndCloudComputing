@@ -98,10 +98,40 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     }
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'DjongoCluster',
+        'HOST': 'djongocluster-shard-00-00-7w68m.mongodb.net',
+        'PORT': 27017,
+        'USER': 'SES-admin',
+        'PASSWORD': 'adminadmin',
+        'SSL': True,
+    },
+    'cassandra': {
+        'ENGINE': 'django_cassandra_engine',
+        'NAME': 'dbTimeData',
+        'USER': 'user',
+        'PASSWORD': 'pass',
+        'TEST_NAME': 'test_dbTimeData',
+        'HOST': 'ec2-3-120-207-159.eu-central-1.compute.amazonaws.com',
+        # 'PORT': 9042,
+        'OPTIONS': {
+            'replication': {
+                'strategy_class': 'SimpleStrategy',
+                'replication_factor': 1
+            },
+            'connection': {
+                'consistency': ConsistencyLevel.LOCAL_ONE,
+                'retry_connect': True
+                # + All connection options for cassandra.cluster.Cluster()
+            },
+            'session': {
+                'default_timeout': 10,
+                'default_fetch_size': 10000
+                # + All options for cassandra.cluster.Session()
+            }
+        }
+    }
 }
 
 

@@ -27,12 +27,7 @@ class MyHouse extends React.Component {
         axios.all([
             axios.get(moneyurl),
             axios.get(batteryurl),
-            axios.get('http://127.0.0.1:8000/api/energyconsumption/1'),
-            axios.get('http://127.0.0.1:8000/api/energyproduction/1'),
-            axios.get('http://127.0.0.1:8000/api/stove/1'),
-            axios.get('http://127.0.0.1:8000/api/lights/1'),
-            axios.get('http://127.0.0.1:8000/api/householdappli/1'),
-            axios.get('http://127.0.0.1:8000/api/entertainment/1')
+
           ])
           .then(axios.spread((moneyRes, batteryRes) => {
             this.setState({ money: moneyRes.data.amount, battery: batteryRes.data.level });

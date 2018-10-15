@@ -36,3 +36,10 @@ class Household(models.Model):
     users_firstName = models.CharField(max_length=50)
     users_lastName = models.CharField(max_length=50)
     money = models.ForeignKey(Money, on_delete=models.CASCADE)
+
+
+
+class Offer(models.Model):
+    user = models.name = models.CharField(max_length=250)
+    price = models.IntegerField()
+    amount = models.IntegerField()
