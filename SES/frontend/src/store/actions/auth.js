@@ -27,6 +27,7 @@ export const logout = () => {
     localStorage.removeItem('username');
     return {
         type: actionTypes.AUTH_LOGOUT
+       // redirect('/home')
     };
 }
 
@@ -47,11 +48,14 @@ export const authLogin = (username, password) => {
         })
         .then(res => {
             const token = res.data.key;
+            const id = res.data.user;
             const name = username;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('username', name);
+            localStorage.setItem('id', id);
+            
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
         })
@@ -65,6 +69,26 @@ export const getUsername = () => {
     const username = localStorage.getItem('username');
     return username;
 }
+
+export const getUserID = () => {
+    const id = localStorage.getItem('id');
+    return id;
+}
+
+/*
+export const getUserId = () => {
+
+    axios.get("http://127.0.0.1:8000/rest-auth/user/", {
+
+    })
+    .then(res => {
+        const id = res.pk;
+        return id;
+    
+  //  print current_user.id
+})
+}
+*/
 
 export const authSignup = (username, email, password1, password2) => {
     return dispatch => {

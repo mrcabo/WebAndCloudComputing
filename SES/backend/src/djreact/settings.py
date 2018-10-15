@@ -100,15 +100,21 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'usersdb',
+        'NAME': 'DjongoCluster',
+        'HOST': 'djongocluster-shard-00-00-7w68m.mongodb.net',
+        'PORT': 27017,
+        'USER': 'SES-admin',
+        'PASSWORD': 'adminadmin',
+        'SSL': True,
     },
     'cassandra': {
         'ENGINE': 'django_cassandra_engine',
-        'NAME': 'dbTestnow',
+        'NAME': 'dbTimeData',
         'USER': 'user',
         'PASSWORD': 'pass',
-        'TEST_NAME': 'test_dbTestnow',
-        'HOST': '127.0.0.1',
+        'TEST_NAME': 'test_dbTimeData',
+        'HOST': 'ec2-3-120-207-159.eu-central-1.compute.amazonaws.com',
+        # 'PORT': 9042,
         'OPTIONS': {
             'replication': {
                 'strategy_class': 'SimpleStrategy',
@@ -182,9 +188,12 @@ REST_FRAMEWORK = {
     )
 }
 
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'token_serializer.TokenSerializer'
+}
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-
