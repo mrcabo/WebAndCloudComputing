@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from cassandra import ConsistencyLevel
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +31,6 @@ ALLOWED_HOSTS = ['justdjango-react-django-app.herokuapp.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django_cassandra_engine',
     'djongo',
 
     'django.contrib.admin',
@@ -106,31 +104,6 @@ DATABASES = {
         'USER': 'SES-admin',
         'PASSWORD': 'adminadmin',
         'SSL': True,
-    },
-    'cassandra': {
-        'ENGINE': 'django_cassandra_engine',
-        'NAME': 'dbTimeData',
-        'USER': 'user',
-        'PASSWORD': 'pass',
-        'TEST_NAME': 'test_dbTimeData',
-        'HOST': 'ec2-3-120-207-159.eu-central-1.compute.amazonaws.com',
-        # 'PORT': 9042,
-        'OPTIONS': {
-            'replication': {
-                'strategy_class': 'SimpleStrategy',
-                'replication_factor': 1
-            },
-            'connection': {
-                'consistency': ConsistencyLevel.LOCAL_ONE,
-                'retry_connect': True
-                # + All connection options for cassandra.cluster.Cluster()
-            },
-            'session': {
-                'default_timeout': 10,
-                'default_fetch_size': 10000
-                # + All options for cassandra.cluster.Session()
-            }
-        }
     }
 }
 
