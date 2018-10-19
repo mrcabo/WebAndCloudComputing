@@ -22,7 +22,7 @@ class HouseholdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Household
         # fields = ('id', 'dummy')
-        fields = ('user_id', 'email', 'users_firstName', 'users_lastName')
+        fields = ('user_id', 'user', 'money', 'battery')
 
 
 class ConsumptionRateSerializer(serializers.Serializer):
@@ -32,4 +32,5 @@ class ConsumptionRateSerializer(serializers.Serializer):
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
-        fields = ('id', 'user', 'price', 'amount')
+        fields = ('id', 'user_id', 'user', 'price', 'amount')
+

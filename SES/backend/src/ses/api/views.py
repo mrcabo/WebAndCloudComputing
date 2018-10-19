@@ -73,6 +73,9 @@ class HouseholdDetailView(RetrieveAPIView):
     queryset = Household.objects.all()
     serializer_class = HouseholdSerializer
 
+class HouseholdUpdateView(UpdateAPIView):
+    queryset = Household.objects.all()
+    serializer_class = HouseholdSerializer
 
 class OfferListView(ListAPIView):
      queryset = Offer.objects.all()
@@ -80,6 +83,14 @@ class OfferListView(ListAPIView):
 
 
 class OfferDetailView(RetrieveAPIView):
+     queryset = Offer.objects.all()
+     serializer_class = OfferSerializer
+
+class OfferCreateView(CreateAPIView):
+     queryset = Offer.objects.all()
+     serializer_class = OfferSerializer
+
+class OfferDeleteView(DestroyAPIView):
      queryset = Offer.objects.all()
      serializer_class = OfferSerializer
 # class MoneyUpdateView(UpdateAPIView):

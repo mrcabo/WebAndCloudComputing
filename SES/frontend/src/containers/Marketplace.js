@@ -66,12 +66,12 @@ componentDidMount() {
       const { getFieldProps, getFieldError } = this.props.form;
       return (
         <div className="jumbotron">
-        <OfferList></OfferList>
+        
         <div className="container">
           <center><h1>Marketplace</h1>
           <p>Buy and sell energy on the marketplace.</p>
           </center>
-          
+          <OfferList></OfferList>
         <div class="jumbotron">
           <div class="row">
           <center>

@@ -12,8 +12,12 @@ from .views import (
     ConsumptionRateDetailView,
     HouseholdListView,
     HouseholdDetailView,
+    HouseholdUpdateView,
     OfferListView,
     OfferDetailView,
+    OfferCreateView,
+    OfferDeleteView,
+
       # MoneyCreateView,
       # MoneyUpdateView,
       # MoneyDeleteView
@@ -37,8 +41,16 @@ urlpatterns = [
     path('consumptionrate/<pk>', ConsumptionRateDetailView.as_view()),
     path('household', HouseholdListView.as_view()),
     path('household/<pk>', HouseholdDetailView.as_view()),
-     path('offer', OfferListView.as_view()),
-     path('offer/<pk>', OfferDetailView.as_view()), 
+    path('household/<pk>/update', HouseholdUpdateView.as_view()),
+    path('offer', OfferListView.as_view()),
+    path('offer/<pk>', OfferDetailView.as_view()), 
+    path('createoffer', OfferCreateView.as_view()),
+    path('deleteoffer/<pk>', OfferDeleteView.as_view()),
+
+    # path('offer', include([
+     #    path('create', OfferCreateView.as_view()),
+     #])),
+
 ]
 #     path('create/', MoneyCreateView.as_view()),
 #     path('<pk>', MoneyDetailView.as_view()),

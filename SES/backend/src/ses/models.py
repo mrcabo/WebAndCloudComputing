@@ -8,6 +8,8 @@ from djongo import models
 class ConsumptionRate(DjangoCassandraModel):
     user_id = columns.Text(primary_key=True)
     rate = columns.Integer(index=True)
+
+
     # ONE keyspace per user "__keyspace__ = $$$" this should be set when we are accessing/modifying data
     # Then we have rows with "users_id" and "<attribute>" as primary keys (e.g. "user1" "productionRate")
     # And columns sequentially for measured data
@@ -31,15 +33,16 @@ class Battery(models.Model):
 
 
 class Household(models.Model):
-    user_id = models.CharField(primary_key=True, max_length=20, unique=True)
-    email = models.EmailField(unique=True)
-    users_firstName = models.CharField(max_length=50)
-    users_lastName = models.CharField(max_length=50)
-    money = models.ForeignKey(Money, on_delete=models.CASCADE)
-
+    user_id = models.IntegerField(primary_key=True, unique=True)
+    user = models.CharField(max_length=250)
+    money = models.IntegerField()
+    battery = models.IntegerField()
 
 
 class Offer(models.Model):
-    user = models.name = models.CharField(max_length=250)
+
+    user_id = models.IntegerField()
+    user = models.CharField(max_length=250)
     price = models.IntegerField()
     amount = models.IntegerField()
+
