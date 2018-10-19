@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from ses.models import Money, Battery
-from .serializers import MoneySerializer, BatterySerializer
+from ses.models import Money, Battery, ConsumptionRate
+from .serializers import MoneySerializer, BatterySerializer, ConsumptionRateSerializer
 
 from rest_framework.generics import (
     ListAPIView,
@@ -21,6 +21,11 @@ class BatteryViewSet(viewsets.ModelViewSet):
     queryset = Battery.objects.all()
 
 
+class ConsumptionRateViewSet(viewsets.ModelViewSet):
+    serializer_class = ConsumptionRateSerializer
+    queryset = ConsumptionRate.objects.all()
+
+
 class MoneyListView(ListAPIView):
     queryset = Money.objects.all()
     serializer_class = MoneySerializer
@@ -39,3 +44,13 @@ class BatteryListView(ListAPIView):
 class BatteryDetailView(RetrieveAPIView):
     queryset = Battery.objects.all()
     serializer_class = BatterySerializer
+
+
+class ConsumptionRateListView(ListAPIView):
+    queryset = ConsumptionRate.objects.all()
+    serializer_class = ConsumptionRateSerializer
+
+
+class ConsumptionRateDetailView(RetrieveAPIView):
+    queryset = ConsumptionRate.objects.all()
+    serializer_class = ConsumptionRateSerializer

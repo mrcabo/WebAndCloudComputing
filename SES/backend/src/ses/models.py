@@ -1,6 +1,11 @@
-from django.db import models
-import uuid
+from cassandra.cqlengine import columns
+from django_cassandra_engine.models import DjangoCassandraModel
 from djongo import models
+
+
+class ConsumptionRate(DjangoCassandraModel):
+    user_id = columns.Text(primary_key=True)
+    rate = columns.Integer(index=True)
 
 
 class Money(models.Model):

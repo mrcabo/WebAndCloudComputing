@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from cassandra import ConsistencyLevel
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,12 +26,13 @@ SECRET_KEY = 'h31=@j2t#$skb6+!85g4-3-ww^2k3t=rq^#5d#2!j=2-qy1p7p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['justdjango-react-django-app.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '35.204.253.189']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_cassandra_engine',
     'djongo',
 
     'django.contrib.admin',
@@ -99,11 +101,36 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'DjongoCluster',
-        'HOST': 'djongocluster-shard-00-00-7w68m.mongodb.net',
+        'HOST': 'mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/dbname_?',
         'PORT': 27017,
-        'USER': 'SES-admin',
-        'PASSWORD': 'adminadmin',
-        'SSL': True,
+        # 'USER': 'SES-admin',
+        # 'PASSWORD': 'adminadmin',
+        # 'SSL': True,
+    },
+    'cassandra': {
+        'ENGINE': 'django_cassandra_engine',
+        'NAME': 'dbTimeData',
+        'USER': 'user',
+        'PASSWORD': 'pass',
+        'TEST_NAME': 'test_dbTimeData',
+        'HOST': 'cassandra-1-cassandra-0.cassandra-1-cassandra-svc.default.svc.cluster.local',
+        # 'PORT': 9042,
+        'OPTIONS': {
+            'replication': {
+                'strategy_class': 'SimpleStrategy',
+                'replication_factor': 1
+            },
+            'connection': {
+                'consistency': ConsistencyLevel.LOCAL_ONE,
+                'retry_connect': True
+                # + All connection options for cassandra.cluster.Cluster()
+            },
+            'session': {
+                'default_timeout': 10,
+                'default_fetch_size': 10000
+                # + All options for cassandra.cluster.Session()
+            }
+        }
     }
 }
 
@@ -144,7 +171,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'http://storage.googleapis.com/wacc-ses-final/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
