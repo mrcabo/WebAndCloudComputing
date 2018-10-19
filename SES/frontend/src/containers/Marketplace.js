@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Form, Icon, Input, Button, Spin } from 'antd';
 import { createForm, formShape } from 'rc-form';
+import OfferList from '../containers/OfferListView';
 
 class Marketplace extends React.Component {
   state = {
@@ -65,11 +66,12 @@ componentDidMount() {
       const { getFieldProps, getFieldError } = this.props.form;
       return (
         <div className="jumbotron">
+        
         <div className="container">
           <center><h1>Marketplace</h1>
           <p>Buy and sell energy on the marketplace.</p>
           </center>
-          
+          <OfferList></OfferList>
         <div class="jumbotron">
           <div class="row">
           <center>

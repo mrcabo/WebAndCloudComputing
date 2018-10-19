@@ -10,6 +10,7 @@ class MyHouse extends React.Component {
     state = {
         money: 0,
         battery: 0,
+        household: [],
         energyConsumption: 0,
         energyProduction: 0,
         stove: 0,
@@ -21,22 +22,14 @@ class MyHouse extends React.Component {
 
     componentDidMount() {
         const id = actions.getUserID()
-        const moneyurl = ' http://127.0.0.1:8000/api/money/' + id;
-        const batteryurl = ' http://127.0.0.1:8000/api/battery/' + id;
+        const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
 
         axios.all([
-            axios.get(moneyurl),
-            axios.get(batteryurl),
-            axios.get('http://127.0.0.1:8000/api/energyconsumption/1'),
-            axios.get('http://127.0.0.1:8000/api/energyproduction/1'),
-            axios.get('http://127.0.0.1:8000/api/stove/1'),
-            axios.get('http://127.0.0.1:8000/api/lights/1'),
-            axios.get('http://127.0.0.1:8000/api/householdappli/1'),
-            axios.get('http://127.0.0.1:8000/api/entertainment/1')
+            
+            axios.get(householdurl),
           ])
-          .then(axios.spread((moneyRes, batteryRes) => {
-            this.setState({ money: moneyRes.data.amount, battery: batteryRes.data.level });
-            // do something with both responses
+          .then(axios.spread((householdRes) => {
+            this.setState({household: householdRes.data });
           }));
         
         }
@@ -85,7 +78,7 @@ class MyHouse extends React.Component {
                 this.props.isAuthenticated ?
                 <div>
                 <h3>Money</h3>
-                <p>{this.state.money}</p>
+                <p>{this.state.household.money}</p>
                 <img src="img/moneySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
                 </div>
                 :
@@ -98,7 +91,7 @@ class MyHouse extends React.Component {
                 this.props.isAuthenticated ?
                 <div>
                 <h3>Battery</h3>
-                <p style={(this.state.battery < 15)? {color: "orange"}:{color: "green"}}>{this.state.battery} kW·h</p> 
+                <p style={(this.state.household.battery < 15)? {color: "orange"}:{color: "green"}}>{this.state.household.battery} kW·h</p> 
                 <img src="img/batterySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
                 </div>
                 :

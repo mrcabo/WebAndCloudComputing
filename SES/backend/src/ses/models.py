@@ -20,3 +20,19 @@ class Battery(models.Model):
 
     def __int__(self):
         return self.level
+
+
+class Household(models.Model):
+    user_id = models.IntegerField(primary_key=True, unique=True)
+    user = models.CharField(max_length=250)
+    money = models.IntegerField()
+    battery = models.IntegerField()
+
+
+class Offer(models.Model):
+
+    user_id = models.IntegerField()
+    user = models.CharField(max_length=250)
+    price = models.IntegerField()
+    amount = models.IntegerField()
+
