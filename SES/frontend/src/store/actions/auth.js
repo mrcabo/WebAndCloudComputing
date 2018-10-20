@@ -101,14 +101,27 @@ export const authSignup = (username, email, password1, password2) => {
         })
         .then(res => {
             const token = res.data.key;
+            const id = res.data.user;
+            const name = username;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('username', name);
+            localStorage.setItem('id', id);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
+            return axios.post('http://127.0.0.1:8000/api/createhousehold', {
+                user_id: id,
+                user: name,
+                money: 100,
+                battery: 100
         })
         .catch(err => {
             dispatch(authFail(err))
+        
+            
+
+        })
         })
     }
 }
