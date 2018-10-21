@@ -7,7 +7,7 @@ django-cors-headers==2.4.0
 django-rest-auth==0.9.3
 djangorestframework==3.8.2
 django-cassandra-engine==1.5.4
-djongo==1.2
+djongo==1.2.30
 gunicorn==19.9.0
 idna==2.7
 oauthlib==2.1.0

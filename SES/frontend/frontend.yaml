@@ -1,0 +1,70 @@
+# This file configures the frontend application . The frontend serves
+# public web traffic.
+
+# The bookshelf frontend replication controller ensures that at least 3
+# instances of the bookshelf app are running on the cluster.
+# For more info about Pods see:
+#   https://cloud.google.com/container-engine/docs/pods/
+# For more info about Deployments:
+#   https://kubernetes.io/docs/user-guide/deployments/
+
+# [START kubernetes_deployment]
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ses-frontend
+  labels:
+    app: ses-frontend
+spec:
+  selector:
+    matchLabels:
+      app: ses-frontend
+      tier: frontend
+      track: stable
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: ses-frontend
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+      - name: ses-frontend-app
+        # Replace  with your project ID or use `make template`
+        image: gcr.io/wacc-ses-final/ses-frontend:v0.1
+        # This setting makes nodes pull the docker image every time before
+        # starting the pod. This is useful when debugging, but should be turned
+        # off in production.
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+
+# [END kubernetes_deployment]
+
+---
+
+# [START service]
+# The ses service provides a load-balancing proxy over the ses app
+# pods. By specifying the type as a 'LoadBalancer', Container Engine will
+# create an external HTTP load balancer.
+# For more information about Services see:
+#   https://cloud.google.com/container-engine/docs/services/
+# For more information about external HTTP load balancing see:
+#   https://cloud.google.com/container-engine/docs/load-balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: ses-frontend
+  labels:
+    app: ses-frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: ses-frontend
+    tier: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+# [END service]
