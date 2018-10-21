@@ -21,6 +21,8 @@ class MyHouse extends React.Component {
 
 
     componentDidMount() {
+        
+            if(this.props.isAuthenticated) {
         const id = actions.getUserID()
         const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
 
@@ -33,6 +35,9 @@ class MyHouse extends React.Component {
           }));
         
         }
+        
+
+    }
 
     render() {
       return (
