@@ -12,6 +12,7 @@ class Marketplace extends React.Component {
 }
 
 componentDidMount() {
+  if(this.props.isAuthenticated) {
   axios.all([
       axios.get('http://35.204.253.189/api/money/1'),
       axios.get('http://35.204.253.189/api/battery/1')
@@ -21,44 +22,8 @@ componentDidMount() {
       // do something with both responses
     }));
   }
+}
 
-  buyEnergy = () => {
-    this.props.form.validateFields((error, value) => {
-      const newMoney = this.state.money - parseInt(value.amount)
-      const newBattery = this.state.battery + parseInt(value.amount)
-      axios.all([
-        axios.put('http://35.204.253.189/api/money/1/update', {
-          amount: newMoney
-        }),
-        axios.put('http://35.204.253.189/api/battery/1/update', {
-          level: newBattery
-        })
-      ])
-      .then  (
-        this.setState({ money: newMoney, battery: newBattery})
-      )
-        console.log(value);
-      });
-  }
-
-  sellEnergy = () => {
-    this.props.form.validateFields((error, value) => {
-      const newMoney = this.state.money + parseInt(value.level)
-      const newBattery = this.state.battery - parseInt(value.level)
-      axios.all([
-        axios.put('http://35.204.253.189/api/money/1/update', {
-          amount: newMoney
-        }),
-        axios.put('http://35.204.253.189/api/battery/1/update', {
-          level: newBattery
-        })
-      ])
-      .then  (
-        this.setState({ money: newMoney, battery: newBattery})
-      )
-        console.log(value);
-      });
-  }
 
     render() {
       let errors;

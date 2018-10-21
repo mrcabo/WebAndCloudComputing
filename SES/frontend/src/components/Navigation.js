@@ -20,7 +20,7 @@ class Navigation extends React.Component {
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
-            <a className="navbar-brand" href="#">Smart Energy System</a>
+            <Link to="/"><a className="navbar-brand" href="">Smart Energy System</a></Link>
           </div>
           <div className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
