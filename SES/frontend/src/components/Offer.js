@@ -5,6 +5,8 @@ import * as actions from '../store/actions/auth';
 import * as update from '../containers/OfferListView'
 import  OfferList from '../containers/OfferListView'
 import { LinkContainer} from 'react-router-bootstrap';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Offer extends React.Component {
 
@@ -85,11 +87,16 @@ class Offer extends React.Component {
             Amount: {item.amount}
 
             <p></p>
-            
-
+            <div>
+            {
+             this.props.isAuthenticated ?
            <LinkContainer to="/marketplace">
             <p><a className="btn btn-primary" onClick={this.buyOffer(item.id, item.user_id, item.price, item.amount)} href="" role="button">Buy</a></p>
             </LinkContainer>
+            :
+            <p></p>
+            }
+            </div>
         </List.Item>
         )}
         
@@ -98,4 +105,10 @@ class Offer extends React.Component {
     }
 }
 
-export default Offer;
+const mapStateToProps = state => {
+    return {
+      isAuthenticated: state.token !== null
+    }
+  }
+
+  export default withRouter(connect(mapStateToProps, null)(Offer));

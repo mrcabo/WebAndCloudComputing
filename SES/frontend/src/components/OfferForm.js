@@ -36,6 +36,7 @@ class CustomForm extends React.Component {
     render() {
         return (
         <div>
+            <h3>Create Offer</h3>
             <Form onSubmit={(event) => this.handleFormSubmit(
                 event,
                 this.props.requestType,

@@ -34,24 +34,33 @@ class MyHouse extends React.Component {
         
         }
 
-
-
     render() {
       return (
-        
-    
-        <div class="container-fluid">
+        <div>
+
+        <div class="jumbotron jumbotron-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron">
-                    <h2>My house</h2>
+                
+                    <center><h1>My house</h1>
                     <p>
                        View all information about your houses energy consumption and production here.
                     </p>
+                    </center>
                 </div>
             </div>
         </div>
-        <div class="jumbotron">
+        <div className="container">
+ 
+        <div class="container-fluid">
+
+        
+        {
+        this.props.isAuthenticated ?
+        <div>   
+
+        <div class="jumbotron border-varant=dark" border-variant="dark">
+        
         <div class="row">
             <div class="col-md-6">
             <center>
@@ -74,29 +83,24 @@ class MyHouse extends React.Component {
         <div class="row">
         <center>
             <div class="col-md-6">
-                {
-                this.props.isAuthenticated ?
+
                 <div>
                 <h3>Money</h3>
                 <p>{this.state.household.money}</p>
                 <img src="img/moneySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
                 </div>
-                :
-                <h3>Login to see info</h3>
-                }
+
 
             </div>
             <div class="col-md-6">
-                {
-                this.props.isAuthenticated ?
+
                 <div>
                 <h3>Battery</h3>
                 <p style={(this.state.household.battery < 15)? {color: "orange"}:{color: "green"}}>{this.state.household.battery} kW·h</p> 
                 <img src="img/batterySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
                 </div>
-                :
-                <h3>Login to see info</h3>
-                }
+                
+   
             </div>
             </center>
         </div>
@@ -129,9 +133,16 @@ class MyHouse extends React.Component {
         </div>
         </div>
 
+                </div>
+               :
+               <div class="jumbotron">
+               <h3>Login to see info</h3>
+               </div>
+               } 
 
-    </div>
-
+        </div>
+        </div>
+        </div>
         )
     }
   }

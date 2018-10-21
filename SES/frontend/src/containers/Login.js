@@ -31,6 +31,7 @@ class NormalLoginForm extends React.Component {
 
     const { getFieldDecorator } = this.props.form;
     return (
+        <div className="container">
         <div>
             {errorMessage}
             {
@@ -70,6 +71,7 @@ class NormalLoginForm extends React.Component {
                     </FormItem>
                 </Form>
             }
+      </div>
       </div>
     );
   }
