@@ -13,8 +13,8 @@ class Marketplace extends React.Component {
 
 componentDidMount() {
   axios.all([
-      axios.get('http://127.0.0.1:8000/api/money/1'),
-      axios.get('http://127.0.0.1:8000/api/battery/1')
+      axios.get('http://35.204.253.189/api/money/1'),
+      axios.get('http://35.204.253.189/api/battery/1')
     ])
     .then(axios.spread((moneyRes, batteryRes) => {
       this.setState({ money: moneyRes.data.amount, battery: batteryRes.data.level });
@@ -27,10 +27,10 @@ componentDidMount() {
       const newMoney = this.state.money - parseInt(value.amount)
       const newBattery = this.state.battery + parseInt(value.amount)
       axios.all([
-        axios.put('http://127.0.0.1:8000/api/money/1/update', {
+        axios.put('http://35.204.253.189/api/money/1/update', {
           amount: newMoney
         }),
-        axios.put('http://127.0.0.1:8000/api/battery/1/update', {
+        axios.put('http://35.204.253.189/api/battery/1/update', {
           level: newBattery
         })
       ])
@@ -46,10 +46,10 @@ componentDidMount() {
       const newMoney = this.state.money + parseInt(value.level)
       const newBattery = this.state.battery - parseInt(value.level)
       axios.all([
-        axios.put('http://127.0.0.1:8000/api/money/1/update', {
+        axios.put('http://35.204.253.189/api/money/1/update', {
           amount: newMoney
         }),
-        axios.put('http://127.0.0.1:8000/api/battery/1/update', {
+        axios.put('http://35.204.253.189/api/battery/1/update', {
           level: newBattery
         })
       ])

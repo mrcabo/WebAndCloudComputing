@@ -56,7 +56,7 @@ export const authLogin = (username, password) => {
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('username', name);
             localStorage.setItem('id', id);
-            
+
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
         })
@@ -85,7 +85,7 @@ export const getUserId = () => {
     .then(res => {
         const id = res.pk;
         return id;
-    
+
   //  print current_user.id
 })
 }
@@ -111,7 +111,7 @@ export const authSignup = (username, email, password1, password2) => {
             localStorage.setItem('id', id);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
-            return axios.post('http://127.0.0.1:8000/api/createhousehold', {
+            return axios.post('http://35.204.253.189/api/createhousehold', {
                 user_id: id,
                 user: name,
                 money: 100,
@@ -119,8 +119,8 @@ export const authSignup = (username, email, password1, password2) => {
         })
         .catch(err => {
             dispatch(authFail(err))
-        
-            
+
+
 
         })
         })
