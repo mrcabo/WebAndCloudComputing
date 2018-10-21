@@ -3,7 +3,8 @@ import axios from 'axios';
 
 import Offer from '../components/Offer';
 import CustomForm from '../components/OfferForm';
-
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class OfferList extends React.Component {
     constructor(props) {
@@ -25,14 +26,31 @@ class OfferList extends React.Component {
     render() {
         return (
             <div>
+                <center>
                 <Offer data={this.state.offers} />
+                </center>
+                <div>
+                
+                        {
+                 this.props.isAuthenticated ?
+                 
                 <CustomForm 
                     requestType="post"
                     offerID={null}
                     btnText="Create" />
+                :
+                <p></p>
+                }
+                </div>
             </div>
         )
     }
 }
 
-export default OfferList;
+const mapStateToProps = state => {
+    return {
+      isAuthenticated: state.token !== null
+    }
+  }
+
+export default withRouter(connect(mapStateToProps, null)(OfferList))

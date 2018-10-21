@@ -60,67 +60,30 @@ componentDidMount() {
       });
   }
 
-
     render() {
       let errors;
       const { getFieldProps, getFieldError } = this.props.form;
       return (
-        <div className="jumbotron">
-        
-        <div className="container">
-          <center><h1>Marketplace</h1>
-          <p>Buy and sell energy on the marketplace.</p>
-          </center>
-          <OfferList></OfferList>
-        <div class="jumbotron">
-          <div class="row">
-          <center>
-              <div class="col-md-6">
-              <h3>
-                  Money 
-                  <p>{this.state.money}</p>
-              </h3>
-              </div>
-              <div class="col-md-6">
-              <h3>
-                  Battery
-                  <p>{this.state.battery}</p>
-              </h3>
-              </div>
-              </center>
-          </div>
-        </div>
-
         <div>
+        <div className="jumbotron jumbotron-fluid">
+        
+        <center><h1>Marketplace</h1>
+        <p>Buy and sell energy on the marketplace.</p>
+        </center>
+        </div> 
 
+        <div className="container">
+        <div class="container-fluid">
+
+         <div className="jumbotron">
+          <OfferList></OfferList>
+        <div>
       </div>
-
-        <div class="jumbotron">
-          <div class="row">
-          <center>
-              <div class="col-md-6">
-
-                <input {...getFieldProps('amount', {
-                  onChange(){}, // have to write original onChange here if you need
-                  rules: [{required: true}],
-                })}/>
-                <p><a className="btn btn-primary" onClick={this.buyEnergy} href="#" role="button">Buy</a></p>
-                </div>
-
-              <div class="col-md-6">
-                <input {...getFieldProps('level', {
-                  onChange(){}, // have to write original onChange here if you need
-                  rules: [{required: true}],
-                })}/>
-                <p><a className="btn btn-primary" onClick={this.sellEnergy} href="#" role="button">Sell</a></p>
-
-              </div>
-              </center>
-          </div>
-        </div>
-
-        </div>
-      </div> 
+      </div>
+      </div>
+      </div>
+      </div>
+     
 
         )
     }

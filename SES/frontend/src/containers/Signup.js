@@ -53,6 +53,7 @@ class RegistrationForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
 
     return (
+      <div className="container">
       <Form onSubmit={this.handleSubmit}>
         
         <FormItem>
@@ -111,9 +112,11 @@ class RegistrationForm extends React.Component {
         </FormItem>
 
       </Form>
+      </div>
     );
   }
 }
+
 
 const WrappedRegistrationForm = Form.create()(RegistrationForm);
 
