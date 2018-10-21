@@ -18,15 +18,15 @@ buyOffer = () => {
     this.props.form.validateFields((error, value) => {
 
       const id = actions.getUserID()
-      const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
+      const householdurl = ' http://35.204.253.189/api/household/' + id;
 
       const newMoney = this.state.money - parseInt(value.amount)
       const newBattery = this.state.battery + parseInt(value.amount)
       axios.all([
-        axios.put('http://127.0.0.1:8000/api/money/1/update', {
+        axios.put('http://35.204.253.189/api/money/1/update', {
           amount: newMoney
         }),
-        axios.put('http://127.0.0.1:8000/api/battery/1/update', {
+        axios.put('http://35.204.253.189/api/battery/1/update', {
           level: newBattery
         })
       ])
@@ -52,21 +52,21 @@ render() {
         }}
         dataSource={this.data}
         renderItem={item => (
-            
+
         <List.Item>
             <List.Item.Meta
             avatar={<Avatar src={item.avatar} />}
             title={<a href={`/${item.user}`}>{item.user}'s offer</a>}
             description={item.description}
             />
-            
+
             Price: {item.price} <br></br>
             Amount: {item.amount}
             <p></p>
             <p><a className="btn btn-primary" onClick={this.buyEnergy} href="#" role="button">Buy</a></p>
         </List.Item>
         )}
-        
+
     />
     )
 }
@@ -81,8 +81,8 @@ const buyOffer = (offerID, sellerID, price, amount) => {
 
 
     const id = actions.getUserID()
-    const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
-    const sellerHouseholdurl = ' http://127.0.0.1:8000/api/household/' + sellerID;
+    const householdurl = ' http://35.204.253.189/api/household/' + id;
+    const sellerHouseholdurl = ' http://35.204.253.189/api/household/' + sellerID;
 
   //  const newMoney = this.state.money - parseInt(value.amount)
   //  const newBattery = this.state.battery + parseInt(value.amount)
@@ -100,14 +100,14 @@ const buyOffer = (offerID, sellerID, price, amount) => {
 
      // this.setState({ money: moneyRes.data.amount, battery: batteryRes.data.level });
       // do something with both responses
-      
+
     }));
 
     axios.all([
-      axios.put('http://127.0.0.1:8000/api/money/1/update', {
+      axios.put('http://35.204.253.189/api/money/1/update', {
         amount: newMoney
       }),
-      axios.put('http://127.0.0.1:8000/api/battery/1/update', {
+      axios.put('http://35.204.253.189/api/battery/1/update', {
         level: newBattery
       })
     ])

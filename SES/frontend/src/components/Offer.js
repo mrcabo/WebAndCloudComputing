@@ -12,13 +12,13 @@ class Offer extends React.Component {
         return function () {
 
         const id = actions.getUserID()
-        const householdurl = 'http://127.0.0.1:8000/api/household/' + id;
-        const sellerHouseholdurl = 'http://127.0.0.1:8000/api/household/' + sellerID;
+        const householdurl = 'http://35.204.253.189/api/household/' + id;
+        const sellerHouseholdurl = 'http://35.204.253.189/api/household/' + sellerID;
 
-        const householdUpdateUrl = `http://127.0.0.1:8000/api/household/${id}/update`
-        const sellerHouseholdUpdateUrl = `http://127.0.0.1:8000/api/household/${sellerID}/update`
+        const householdUpdateUrl = `http://35.204.253.189/api/household/${id}/update`
+        const sellerHouseholdUpdateUrl = `http://35.204.253.189/api/household/${sellerID}/update`
 
-        const offerDeleteUrl = 'http://127.0.0.1:8000/api/deleteoffer/' + offerID;
+        const offerDeleteUrl = 'http://35.204.253.189/api/deleteoffer/' + offerID;
   
 
         axios.all([

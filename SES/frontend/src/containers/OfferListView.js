@@ -14,7 +14,7 @@ class OfferList extends React.Component {
 }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/offer')
+        axios.get('http://35.204.253.189/api/offer')
             .then(res => {
                 this.setState({
                     offers: res.data

@@ -15,7 +15,7 @@ class CustomForm extends React.Component {
 
         switch ( requestType ) {
             case 'post':
-                return axios.post('http://127.0.0.1:8000/api/createoffer', {
+                return axios.post('http://35.204.253.189/api/createoffer', {
                     user: user,
                     user_id: user_id,
                     price: price,
@@ -24,7 +24,7 @@ class CustomForm extends React.Component {
                 .then(res => console.log(res))
                 .catch(error => console.err(error));
             case 'put':
-                return axios.put(`http://127.0.0.1:8000/api/${offerID}/`, {
+                return axios.put(`http://35.204.253.189/api/${offerID}/`, {
                     price: price,
                     amount: amount
                 })

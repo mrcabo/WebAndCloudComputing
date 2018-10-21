@@ -22,7 +22,7 @@ class MyHouse extends React.Component {
 
     componentDidMount() {
         const id = actions.getUserID()
-        const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
+        const householdurl = ' http://35.204.253.189/api/household/' + id;
 
         axios.all([
             

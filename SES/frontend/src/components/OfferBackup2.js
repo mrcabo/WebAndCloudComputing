@@ -14,9 +14,9 @@ const buyOffer = (offerID, sellerID, price, amount) => {
 
 
       const id = actions.getUserID()
-      const householdurl = 'http://127.0.0.1:8000/api/household/' + id;
-      const sellerHouseholdurl = 'http://127.0.0.1:8000/api/household/' + sellerID;
-      const offerDeleteUrl = 'http://127.0.0.1:8000/api/deleteoffer/' + offerID;
+      const householdurl = 'http://35.204.253.189/api/household/' + id;
+      const sellerHouseholdurl = 'http://35.204.253.189/api/household/' + sellerID;
+      const offerDeleteUrl = 'http://35.204.253.189/api/deleteoffer/' + offerID;
 
     //  const newMoney = this.state.money - parseInt(value.amount)
     //  const newBattery = this.state.battery + parseInt(value.amount)
