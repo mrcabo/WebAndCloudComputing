@@ -4,6 +4,7 @@ body {
   }
   
   .jumbotron-fluid {
+    background-image: url("windmills2.png");
     background-color: #ced8eb;
     width:100%;
 	color: black;
