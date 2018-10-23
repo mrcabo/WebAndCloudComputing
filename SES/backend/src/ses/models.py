@@ -46,3 +46,13 @@ class Offer(models.Model):
     price = models.IntegerField()
     amount = models.IntegerField()
 
+class Energy(models.Model):
+    user_id = models.IntegerField()
+    productionrate = models.IntegerField()
+    consumptionrate = models.IntegerField()
+    stoves = models.IntegerField()
+    lights = models.IntegerField()
+    household_appliances = models.IntegerField()
+    home_entertainment = models.IntegerField()
+    solar_panels = models.IntegerField()
+    windmills = models.IntegerField()

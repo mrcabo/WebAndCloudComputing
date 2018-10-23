@@ -1,4 +1,4 @@
-from ses.api.views import MoneyViewSet, BatteryViewSet, ConsumptionRateViewSet, HouseholdViewSet, OfferViewSet
+from ses.api.views import MoneyViewSet, BatteryViewSet, ConsumptionRateViewSet, HouseholdViewSet, OfferViewSet, EnergyViewSet
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include, re_path
 # from django.urls import path
@@ -18,6 +18,9 @@ from .views import (
     OfferDetailView,
     OfferCreateView,
     OfferDeleteView,
+    EnergyListView,
+    EnergyDetailView,
+    EnergyUpdateView
 
       # MoneyCreateView,
       # MoneyUpdateView,
@@ -48,7 +51,9 @@ urlpatterns = [
     path('offer/<pk>', OfferDetailView.as_view()), 
     path('createoffer', OfferCreateView.as_view()),
     path('deleteoffer/<pk>', OfferDeleteView.as_view()),
-
+    path('energy', EnergyListView.as_view()),
+    path('energy/<pk>', EnergyDetailView.as_view()),
+    path('energy/<pk>/update', EnergyUpdateView.as_view()),
     # path('offer', include([
      #    path('create', OfferCreateView.as_view()),
      #])),

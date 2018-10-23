@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ses.models import Money, Battery, Household, ConsumptionRate
+from ses.models import Money, Battery, Household, ConsumptionRate, Energy
 from rest_auth.models import TokenModel
 from ses.models import Offer
 from django.contrib.auth.models import User
@@ -34,3 +34,8 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Offer
         fields = ('id', 'user_id', 'user', 'price', 'amount')
 
+
+class EnergySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Energy   
+        fields = ('id', 'user_id', 'productionrate', 'consumptionrate', 'stoves', 'lights', 'household_appliances', 'home_entertainment', 'solar_panels', 'windmills')
