@@ -12,25 +12,16 @@ class CustomForm extends React.Component {
         const amount = event.target.elements.amount.value;
         const user = actions.getUsername()
         const user_id = actions.getUserID()
+        console.log(user)
+        console.log(user_id)
 
-        switch ( requestType ) {
-            case 'post':
-                return axios.post('http://35.204.253.189/api/createoffer', {
+                axios.post('http://127.0.0.1:8000/api/createoffer', {
                     user: user,
                     user_id: user_id,
                     price: price,
                     amount: amount
                 })
-                .then(res => console.log(res))
-                .catch(error => console.err(error));
-            case 'put':
-                return axios.put(`http://35.204.253.189/api/${offerID}/`, {
-                    price: price,
-                    amount: amount
-                })
-                .then(res => console.log(res))
-                .catch(error => console.err(error));
-        }
+        
     }
 
     render() {
