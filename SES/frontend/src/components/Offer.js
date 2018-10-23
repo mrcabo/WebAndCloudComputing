@@ -8,6 +8,20 @@ import { LinkContainer} from 'react-router-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+async function deleteOffer(offerID) {
+    const offerDeleteUrl = 'http://127.0.0.1:8000/api/deleteoffer/' + offerID;
+    axios.delete(offerDeleteUrl);
+}
+
+async function reload() {
+    await sleep(100);
+    window.location.reload()
+}
+
 class Offer extends React.Component {
 
     buyOffer = (offerID, sellerID, price, amount) => {
@@ -19,8 +33,6 @@ class Offer extends React.Component {
 
         const householdUpdateUrl = `http://127.0.0.1:8000/api/household/${id}/update`
         const sellerHouseholdUpdateUrl = `http://127.0.0.1:8000/api/household/${sellerID}/update`
-
-        const offerDeleteUrl = 'http://127.0.0.1:8000/api/deleteoffer/' + offerID;
   
 
         axios.all([
@@ -52,8 +64,15 @@ class Offer extends React.Component {
               })
             ])
             .then(res => {
-
-                return axios.delete(offerDeleteUrl), window.location.reload();
+             //   axios.delete(offerDeleteUrl);
+                deleteOffer(offerID);
+              //  sleep(20000);
+               // console.log("TEST")
+              //  this.history.pushState(null, '/');
+             //   this.history.pushState(null, '/marketplace');
+                //return refresh()
+                reload();
+              //  return window.location.reload();
                 
             })
         }));
@@ -84,7 +103,8 @@ class Offer extends React.Component {
             />
             
             Price: {item.price} <br></br>
-            Amount: {item.amount}
+            Amount: {item.amount} <br></br>
+            id: {item.id}
 
             <p></p>
             <div>

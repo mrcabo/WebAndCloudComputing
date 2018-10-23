@@ -26,7 +26,7 @@ class Footer extends React.Component {
             </div>
             <div>
               <i className="fa fa-envelope" />
-              <p><a href="mailto:support@company.com">info@gses.nl</a></p>
+              <p><a href="mailto:support@company.com">info@ses.nl</a></p>
             </div>
           </div>
           <div className="footer-right">
