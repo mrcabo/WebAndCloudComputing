@@ -20,7 +20,8 @@ from .views import (
     OfferDeleteView,
     EnergyListView,
     EnergyDetailView,
-    EnergyUpdateView
+    EnergyUpdateView,
+    EnergyCreateView
 
       # MoneyCreateView,
       # MoneyUpdateView,
@@ -54,6 +55,7 @@ urlpatterns = [
     path('energy', EnergyListView.as_view()),
     path('energy/<pk>', EnergyDetailView.as_view()),
     path('energy/<pk>/update', EnergyUpdateView.as_view()),
+    path('createenergy', EnergyCreateView.as_view()),
     # path('offer', include([
      #    path('create', OfferCreateView.as_view()),
      #])),

@@ -113,6 +113,10 @@ class EnergyDetailView(RetrieveAPIView):
     queryset = Energy.objects.all()
     serializer_class = EnergySerializer
 
+class EnergyCreateView(CreateAPIView):
+    queryset = Energy.objects.all()
+    serializer_class = EnergySerializer
+
 class EnergyUpdateView(UpdateAPIView):
     queryset = Energy.objects.all()
     serializer_class = EnergySerializer
