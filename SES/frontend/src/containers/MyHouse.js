@@ -45,6 +45,13 @@ class MyHouse extends React.Component {
         }
     }
 
+    getRates = (stoves, lights, household_appliances, home_entertainment, solar_panels, windmills) => {
+        const consumptionrate = 10*parseInt(stoves) + parseInt(lights) + 20*parseInt(household_appliances) + 5*parseInt(home_entertainment)
+        const productionrate = 30*parseInt(solar_panels) + 60*parseInt(windmills)
+        return [consumptionrate, productionrate]
+
+    }
+
     updateAppliances = (event, requestType, offerID) => {
         event.preventDefault();
         const stoves = event.target.elements.stoves.value;
@@ -53,13 +60,19 @@ class MyHouse extends React.Component {
         const home_entertainment = event.target.elements.home_entertainment.value;
         const solar_panels = event.target.elements.solar_panels.value;
         const windmills = event.target.elements.windmills.value;
+        var rates = this.getRates(stoves, lights, household_appliances, home_entertainment, solar_panels, windmills)
+        const consumptionrate = rates[0]
+        const productionrate = rates[1]
+
         const user = actions.getUsername()
         const user_id = actions.getUserID()
+        
+        var newEnergy = {user_id: user_id, productionrate: productionrate, consumptionrate: consumptionrate, stoves: stoves, lights: lights, household_appliances: household_appliances, home_entertainment: home_entertainment, solar_panels: solar_panels, windmills: windmills}
 
                 axios.put(`http://127.0.0.1:8000/api/energy/${user_id}/update`, {
                     user_id: user_id,
-                    productionrate: 100,
-                    consumptionrate: 100,
+                    productionrate: productionrate,
+                    consumptionrate: consumptionrate,
                     stoves: stoves,
                     lights: lights,
                     household_appliances: household_appliances,
@@ -67,7 +80,9 @@ class MyHouse extends React.Component {
                     solar_panels: solar_panels,
                     windmills: windmills
                 })
-               // reload();
+                .then(res => {
+                    this.setState({energy: newEnergy});
+                })
         
     }
 
@@ -185,22 +200,22 @@ class MyHouse extends React.Component {
                 this.props.requestType,
                 this.props.offerID )}>
             <FormItem label="Stoves" >
-                <Input name="stoves" placeholder="Enter the price" />
+                <Input name="stoves" placeholder="Enter the amount of stoves" />
             </FormItem>
             <FormItem label="Lights" >
-                <Input name="lights" placeholder="Enter the amount of enery" />
+                <Input name="lights" placeholder="Enter the amount of lights" />
             </FormItem>
             <FormItem label="Household appliances" >
-                <Input name="household_appliances" placeholder="Enter the amount of enery" />
+                <Input name="household_appliances" placeholder="Enter the amount of household appliances" />
             </FormItem>
             <FormItem label="Home entertainment" >
-                <Input name="home_entertainment" placeholder="Enter the amount of enery" />
+                <Input name="home_entertainment" placeholder="Enter the amount of home entertainment systems"  />
             </FormItem>
             <FormItem label="Solar panels" >
-                <Input name="solar_panels" placeholder="Enter the amount of enery" />
+                <Input name="solar_panels" placeholder="Enter the amount of solar panels"  />
             </FormItem>
             <FormItem label="Windmills" >
-                <Input name="windmills" placeholder="Enter the amount of enery" />
+                <Input name="windmills" placeholder="Enter the amount of windmills" />
             </FormItem>
             <FormItem>
                 <Button type="primary" htmlType="submit">Update</Button>
