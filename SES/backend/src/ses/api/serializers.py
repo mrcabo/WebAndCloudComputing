@@ -38,4 +38,4 @@ class OfferSerializer(serializers.ModelSerializer):
 class EnergySerializer(serializers.ModelSerializer):
     class Meta:
         model = Energy   
-        fields = ('id', 'user_id', 'productionrate', 'consumptionrate', 'stoves', 'lights', 'household_appliances', 'home_entertainment', 'solar_panels', 'windmills')
+        fields = ('user_id', 'productionrate', 'consumptionrate', 'stoves', 'lights', 'household_appliances', 'home_entertainment', 'solar_panels', 'windmills')

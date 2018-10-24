@@ -47,7 +47,7 @@ class Offer(models.Model):
     amount = models.IntegerField()
 
 class Energy(models.Model):
-    user_id = models.IntegerField()
+    user_id = models.IntegerField(primary_key=True, unique=True)
     productionrate = models.IntegerField()
     consumptionrate = models.IntegerField()
     stoves = models.IntegerField()
