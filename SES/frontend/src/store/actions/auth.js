@@ -56,7 +56,7 @@ export const authLogin = (username, password) => {
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('username', name);
             localStorage.setItem('id', id);
-            
+
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
         })
@@ -85,7 +85,7 @@ export const getUserId = () => {
     .then(res => {
         const id = res.pk;
         return id;
-    
+
   //  print current_user.id
 })
 }
@@ -118,7 +118,7 @@ export const authSignup = (username, email, password1, password2) => {
                   money: 100,
                   battery: 100
                 }),
-                axios.post('http://127.0.0.1:8000/api/createenergy', {
+                axios.post('http://127.0.0.1:8000/api/createenergyrates', {
                   user_id: id,
                   productionrate: 0,
                   consumptionrate: 0,
@@ -130,11 +130,11 @@ export const authSignup = (username, email, password1, password2) => {
                   windmills: 0
                 })
               ])
-              
+
         .catch(err => {
             dispatch(authFail(err))
-        
-            
+
+
 
         })
         })

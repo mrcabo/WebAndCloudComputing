@@ -97,11 +97,36 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     }
+    },
+    'cassandra': {
+        'ENGINE': 'django_cassandra_engine',
+        'NAME': 'dbTestnow',
+        'USER': 'user',
+        'PASSWORD': 'pass',
+        'TEST_NAME': 'test_dbTestnow',
+        'HOST': '127.0.0.1',
+        'OPTIONS': {
+            'replication': {
+                'strategy_class': 'SimpleStrategy',
+                'replication_factor': 1
+            },
+            'connection': {
+                'consistency': ConsistencyLevel.LOCAL_ONE,
+                'retry_connect': True
+                # + All connection options for cassandra.cluster.Cluster()
+            },
+            'session': {
+                'default_timeout': 10,
+                'default_fetch_size': 10000
+                # + All options for cassandra.cluster.Session()
+            }
+        }
+    }
 }
 
 
@@ -167,4 +192,3 @@ CORS_ORIGIN_ALLOW_ALL = True
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-

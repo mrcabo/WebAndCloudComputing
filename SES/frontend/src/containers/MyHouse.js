@@ -21,19 +21,19 @@ class MyHouse extends React.Component {
         household_appliances: 0,
         home_entertainment: 0,
         energy: []
- 
+
     }
 
 
     componentDidMount() {
-  
+
         if(this.props.isAuthenticated) {
         const id = actions.getUserID()
         const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
-        const energyurl = ' http://127.0.0.1:8000/api/energy/' + id;
-        
+        const energyurl = ' http://127.0.0.1:8000/api/energyrates/' + id;
+
         axios.all([
-            
+
             axios.get(householdurl),
             axios.get(energyurl)
           ])
@@ -41,7 +41,7 @@ class MyHouse extends React.Component {
             this.setState({household: householdRes.data}),
             this.setState({energy: energyRes.data});
           }));
-        
+
         }
     }
 
@@ -66,10 +66,10 @@ class MyHouse extends React.Component {
 
         const user = actions.getUsername()
         const user_id = actions.getUserID()
-        
+
         var newEnergy = {user_id: user_id, productionrate: productionrate, consumptionrate: consumptionrate, stoves: stoves, lights: lights, household_appliances: household_appliances, home_entertainment: home_entertainment, solar_panels: solar_panels, windmills: windmills}
 
-                axios.put(`http://127.0.0.1:8000/api/energy/${user_id}/update`, {
+                axios.put(`http://127.0.0.1:8000/api/energyrates/${user_id}/update`, {
                     user_id: user_id,
                     productionrate: productionrate,
                     consumptionrate: consumptionrate,
@@ -83,7 +83,7 @@ class MyHouse extends React.Component {
                 .then(res => {
                     this.setState({energy: newEnergy});
                 })
-        
+
     }
 
     render() {
@@ -93,7 +93,7 @@ class MyHouse extends React.Component {
         <div class="jumbotron jumbotron-fluid">
         <div class="row">
             <div class="col-md-12">
-                
+
                     <center><h1>My house</h1>
                     <p>
                        View all information about your houses energy consumption and production here.
@@ -103,28 +103,28 @@ class MyHouse extends React.Component {
             </div>
         </div>
         <div className="container">
- 
+
         <div class="container-fluid">
 
-        
+
         {
         this.props.isAuthenticated ?
-        <div>   
+        <div>
 
         <div class="jumbotron border-varant=dark" border-variant="dark">
-        
+
         <div class="row">
             <div class="col-md-6">
             <center>
                 <h3>Energy consumption</h3>
-                <p style={{color: "red"}}>{this.state.energy.consumptionrate} kW·h</p> 
+                <p style={{color: "red"}}>{this.state.energy.consumptionrate} kW·h</p>
                 <img src="img/consumptionSymbol.svg" alt="Slate Bootstrap Admin Theme" width={100} height={100} />
             </center>
             </div>
             <div class="col-md-6">
             <center>
                 <h3>Energy production</h3>
-                <p style={{color: "green"}}>{this.state.energy.productionrate} kW·h</p> 
+                <p style={{color: "green"}}>{this.state.energy.productionrate} kW·h</p>
                 <img src="img/productionSymbol.svg" alt="Slate Bootstrap Admin Theme" width={100} height={100} />
             </center>
             </div>
@@ -148,11 +148,11 @@ class MyHouse extends React.Component {
 
                 <div>
                 <h3>Battery</h3>
-                <p style={(this.state.household.battery < 15)? {color: "orange"}:{color: "green"}}>{this.state.household.battery} kW·h</p> 
+                <p style={(this.state.household.battery < 15)? {color: "orange"}:{color: "green"}}>{this.state.household.battery} kW·h</p>
                 <img src="img/batterySymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
                 </div>
-                
-   
+
+
             </div>
             </center>
         </div>
@@ -163,17 +163,19 @@ class MyHouse extends React.Component {
         <center>
             <div class="col-md-2">
                 <h3>Stoves</h3>
+                <br></br>
                 <p>{this.state.energy.stoves}</p>
                 <img src="img/stoveSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
             </div>
             <div class="col-md-2">
                 <h3>Lights</h3>
+                <br></br>
                 <p>{this.state.energy.lights}</p>
                 <img src="img/lightSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
             </div>
             <div class="col-md-2">
                 <h3>Household Appliances</h3>
-                <p>{this.state.energy.household_ppliances}</p>
+                <p>{this.state.energy.household_appliances}</p>
                 <img src="img/cleaningSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
             </div>
             <div class="col-md-2">
@@ -183,13 +185,15 @@ class MyHouse extends React.Component {
             </div>
             <div class="col-md-2">
                 <h3>Solar panels</h3>
+                <br></br>
                 <p>{this.state.energy.solar_panels}</p>
-                <img src="img/entertainmentSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                <img src="img/solarPanelSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
             </div>
             <div class="col-md-2">
                 <h3>Windmills</h3>
+                <br></br>
                 <p>{this.state.energy.windmills}</p>
-                <img src="img/entertainmentSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                <img src="img/windmillSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
             </div>
             </center>
         </div>
@@ -220,16 +224,16 @@ class MyHouse extends React.Component {
             <FormItem>
                 <Button type="primary" htmlType="submit">Update</Button>
             </FormItem>
-            
+
             </Form>
-        
+
 
                 </div>
                :
                <div class="jumbotron">
                <h3>Login to see info</h3>
                </div>
-               } 
+               }
 
         </div>
         </div>
@@ -239,13 +243,13 @@ class MyHouse extends React.Component {
         )
     }
   }
-  
+
   const mapStateToProps = state => {
     return {
       isAuthenticated: state.token !== null
     }
   }
-  
-  
+
+
  // export default MyHouse;
   export default withRouter(connect(mapStateToProps, null)(MyHouse));
