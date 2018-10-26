@@ -158,46 +158,42 @@ class MyHouse extends React.Component {
         </div>
         </div>
 
-         <div class="jumbotron">
-        <div class="row">
-        <center>
-            <div class="col-md-2">
-                <h3>Stoves</h3>
-                <br></br>
-                <p>{this.state.energy.stoves}</p>
-                <img src="img/stoveSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
-            </div>
-            <div class="col-md-2">
-                <h3>Lights</h3>
-                <br></br>
-                <p>{this.state.energy.lights}</p>
-                <img src="img/lightSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
-            </div>
-            <div class="col-md-2">
-                <h3>Household Appliances</h3>
-                <p>{this.state.energy.household_appliances}</p>
-                <img src="img/cleaningSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
-            </div>
-            <div class="col-md-2">
-                <h3>Home entertainment</h3>
-                <p>{this.state.energy.home_entertainment}</p>
-                <img src="img/entertainmentSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
-            </div>
-            <div class="col-md-2">
-                <h3>Solar panels</h3>
-                <br></br>
-                <p>{this.state.energy.solar_panels}</p>
-                <img src="img/solarPanelSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
-            </div>
-            <div class="col-md-2">
-                <h3>Windmills</h3>
-                <br></br>
-                <p>{this.state.energy.windmills}</p>
-                <img src="img/windmillSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
-            </div>
-            </center>
-        </div>
-        </div>
+        <div class="jumbotron">
+                <div class="row">
+                <center>
+                    <div class="col-md-2">
+                        <h3>Stoves</h3>
+                        <p style={{paddingTop: 35}}>{this.state.energy.stoves}</p>
+                        <img src="img/stoveSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Lights</h3>
+                       <p style={{paddingTop: 35}}>{this.state.energy.lights}</p>
+                        <img src="img/lightSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Household Appliances</h3>
+                        <p style={{paddingTop: 10}}>{this.state.energy.household_appliances}</p>
+                        <img src="img/cleaningSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Home entertainment</h3>
+                        <p style={{paddingTop: 10}}>{this.state.energy.home_entertainment}</p>
+                        <img src="img/entertainmentSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Solar panels</h3>
+                        <p style={{paddingTop: 35}}>{this.state.energy.solar_panels}</p>
+                        <img src="img/solarPanelSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Windmills</h3>
+                        <p style={{paddingTop: 35}}>{this.state.energy.windmills}</p>
+                        <img src="img/windmillSymbol.svg" alt="Slate Bootstrap Admin Theme" width={80} height={80} />
+                    </div>
+                    </center>
+                </div>
+                </div>
 
                 <Form onSubmit={(event) => this.updateAppliances(
                 event,
