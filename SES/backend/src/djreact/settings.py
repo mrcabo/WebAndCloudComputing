@@ -97,6 +97,7 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
@@ -197,4 +198,3 @@ CORS_ORIGIN_ALLOW_ALL = True
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-

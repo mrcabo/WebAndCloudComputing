@@ -111,12 +111,26 @@ export const authSignup = (username, email, password1, password2) => {
             localStorage.setItem('id', id);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
-            return axios.post('http://35.204.253.189/api/createhousehold', {
-                user_id: id,
-                user: name,
-                money: 100,
-                battery: 100
-        })
+            return axios.all([
+                axios.post('http://127.0.0.1:8000/api/createhousehold', {
+                  user_id: id,
+                  user: name,
+                  money: 100,
+                  battery: 100
+                }),
+                axios.post('http://127.0.0.1:8000/api/createenergyrates', {
+                  user_id: id,
+                  productionrate: 0,
+                  consumptionrate: 0,
+                  stoves: 0,
+                  lights: 0,
+                  household_appliances: 0,
+                  home_entertainment: 0,
+                  solar_panels: 0,
+                  windmills: 0
+                })
+              ])
+
         .catch(err => {
             dispatch(authFail(err))
 

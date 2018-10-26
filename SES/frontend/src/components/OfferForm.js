@@ -5,15 +5,22 @@ import axios from 'axios';
 
 const FormItem = Form.Item;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function reload() {
+    await sleep(100);
+    window.location.reload()
+}
 class CustomForm extends React.Component {
 
     handleFormSubmit = (event, requestType, offerID) => {
+        event.preventDefault();
         const price = event.target.elements.price.value;
         const amount = event.target.elements.amount.value;
         const user = actions.getUsername()
         const user_id = actions.getUserID()
-        console.log(user)
-        console.log(user_id)
 
                 axios.post('http://127.0.0.1:8000/api/createoffer', {
                     user: user,
@@ -21,6 +28,7 @@ class CustomForm extends React.Component {
                     price: price,
                     amount: amount
                 })
+                reload();
         
     }
 
