@@ -22,7 +22,7 @@ class CustomForm extends React.Component {
         const user = actions.getUsername()
         const user_id = actions.getUserID()
 
-                axios.post('http://127.0.0.1:8000/api/createoffer', {
+                axios.post('http://35.204.253.189/api/createoffer', {
                     user: user,
                     user_id: user_id,
                     price: price,

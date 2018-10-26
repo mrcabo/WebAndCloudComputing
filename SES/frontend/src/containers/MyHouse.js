@@ -29,8 +29,8 @@ class MyHouse extends React.Component {
 
         if(this.props.isAuthenticated) {
         const id = actions.getUserID()
-        const householdurl = ' http://127.0.0.1:8000/api/household/' + id;
-        const energyurl = ' http://127.0.0.1:8000/api/energyrates/' + id;
+        const householdurl = ' http://35.204.253.189/api/household/' + id;
+        const energyurl = ' http://35.204.253.189/api/energyrates/' + id;
 
         axios.all([
 
@@ -69,7 +69,7 @@ class MyHouse extends React.Component {
 
         var newEnergy = {user_id: user_id, productionrate: productionrate, consumptionrate: consumptionrate, stoves: stoves, lights: lights, household_appliances: household_appliances, home_entertainment: home_entertainment, solar_panels: solar_panels, windmills: windmills}
 
-                axios.put(`http://127.0.0.1:8000/api/energyrates/${user_id}/update`, {
+                axios.put(`http://35.204.253.189/api/energyrates/${user_id}/update`, {
                     user_id: user_id,
                     productionrate: productionrate,
                     consumptionrate: consumptionrate,
