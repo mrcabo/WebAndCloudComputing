@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import '../styles/App.css';
+
 import '../styles/Gui.css';
 
 
 import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Body from '../components/MainBody';
 
@@ -17,13 +19,14 @@ class CustomLayout extends React.Component {
   render() {
     return (
     <Layout className="layout">
-      <div>
+      <body bgcolor="black">
 
         <Navigation/>
-        <div className="container">
+        <div>
         {this.props.children}
         </div>
-      </div>
+        <Footer/>
+        </body>
       </Layout>
     );
   }

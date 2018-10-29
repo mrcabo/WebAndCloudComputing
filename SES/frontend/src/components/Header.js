@@ -4,11 +4,11 @@ class Header extends React.Component {
     render() {
       return (
 
-        <div className="jumbotron">
+        <div className="jumbotron jumbotron-fluid">
         <div className="container">
-          <center><h1>Smart Energy System</h1></center>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+          <center><h1>Smart Energy System</h1>
+          <p>Manage and trade your energy.</p>
+          </center>
         </div>
       </div>     
 

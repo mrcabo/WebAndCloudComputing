@@ -1,0 +1,57 @@
+#---> First, configure google sdk - follow the steps..
+gcloud init
+
+#--->  When the app is deployed to Google Cloud Platform, it uses the Gunicorn server.
+#--->  Gunicorn doesn't serve static content, so the app uses Cloud Storage to serve
+#--->  static content
+gsutil mb gs://wacc-ses-final
+gsutil defacl set public-read gs://wacc-ses-final
+
+#--->  Gather all the static content locally into one folder
+python manage.py collectstatic
+
+#--->  Upload the static content to Cloud Storage
+gsutil rsync -R staticfiles/ gs://wacc-ses-final/static
+
+
+#--->  In mysite/settings.py, set the value of STATIC_URL to this URL
+http://storage.googleapis.com/wacc-ses-final/static/
+
+
+#--->  Create a GKE cluster
+gcloud container clusters create ses \
+  --scopes "https://www.googleapis.com/auth/userinfo.email","cloud-platform" \
+  --num-nodes 2 --zone "europe-west3-b"
+
+#--->  After the cluster is created, use the kubectl command-line tool,
+#--->  which is integrated with the gcloud tool, to interact with your GKE cluster.
+#--->  Because gcloud and kubectl are separate tools, make sure kubectl
+#--->  is configured to interact with the right cluster:
+gcloud container clusters get-credentials ses --zone "europe-west3-b"
+
+#--->  Build a Docker image.
+docker build -t gcr.io/wacc-ses-final/ses-backend .
+
+#--->  Configure docker to use gcloud as a credential helper, so that you can
+#--->  push the image to Google Container Registry:
+gcloud auth configure-docker
+
+#--->  Push the Docker image.
+docker push gcr.io/wacc-ses-final/ses-backend
+
+
+#--->  Create the GKE resource
+kubectl create -f backend.yaml
+
+#--->  After the resources are created, there should be three ses pods on the
+#--->  cluster. Check the status of your pods
+kubectl get pods
+
+#--->  Wait a few minutes for the pod statuses to turn to Running. If the pods
+#--->  are not ready or if you see restarts, you can get the logs for a
+#--->  particular pod to figure out the issue
+kubectl logs <your-pod-id>
+
+
+#--->  After the pods are ready, you can get the public IP address of the load balancer:
+kubectl get services ses

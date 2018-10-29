@@ -25,6 +25,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('username');
+    localStorage.removeItem('id');
     return {
         type: actionTypes.AUTH_LOGOUT
        // redirect('/home')
@@ -42,7 +43,7 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:8000/rest-auth/login/', {
+        axios.post('http://35.204.253.189/rest-auth/login/', {
             username: username,
             password: password
         })
@@ -55,7 +56,7 @@ export const authLogin = (username, password) => {
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('username', name);
             localStorage.setItem('id', id);
-            
+
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
         })
@@ -78,13 +79,13 @@ export const getUserID = () => {
 /*
 export const getUserId = () => {
 
-    axios.get("http://127.0.0.1:8000/rest-auth/user/", {
+    axios.get("http://35.204.253.189/rest-auth/user/", {
 
     })
     .then(res => {
         const id = res.pk;
         return id;
-    
+
   //  print current_user.id
 })
 }
@@ -93,7 +94,7 @@ export const getUserId = () => {
 export const authSignup = (username, email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
+        axios.post('http://35.204.253.189/rest-auth/registration/', {
             username: username,
             email: email,
             password1: password1,
@@ -101,14 +102,41 @@ export const authSignup = (username, email, password1, password2) => {
         })
         .then(res => {
             const token = res.data.key;
+            const id = res.data.user;
+            const name = username;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('username', name);
+            localStorage.setItem('id', id);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
-        })
+            return axios.all([
+                axios.post('http://35.204.253.189/api/createhousehold', {
+                  user_id: id,
+                  user: name,
+                  money: 100,
+                  battery: 100
+                }),
+                axios.post('http://35.204.253.189/api/createenergyrates', {
+                  user_id: id,
+                  productionrate: 0,
+                  consumptionrate: 0,
+                  stoves: 0,
+                  lights: 0,
+                  household_appliances: 0,
+                  home_entertainment: 0,
+                  solar_panels: 0,
+                  windmills: 0
+                })
+              ])
+
         .catch(err => {
             dispatch(authFail(err))
+
+
+
+        })
         })
     }
 }

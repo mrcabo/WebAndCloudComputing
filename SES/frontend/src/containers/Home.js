@@ -16,14 +16,10 @@ import Body from '../components/MainBody';
 class CustomLayout extends React.Component {
   render() {
     return (
-    
       <div>
         <Header/>
-        
-        <Body/>
-        
+        <Body/>    
       </div>
-      
     );
   }
 }

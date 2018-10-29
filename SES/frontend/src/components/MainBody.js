@@ -7,8 +7,9 @@ import { LinkContainer} from 'react-router-bootstrap';
 class Body extends React.Component {
     render() {
       return (
-        
+        <div className="container">
         <div className="row">
+        
           <div className="col-md-6">
             <h2>My House</h2>
             <Link to="/myhouse">
@@ -36,7 +37,7 @@ class Body extends React.Component {
 
           </div>
         </div>
-
+        </div>
         )
     }
   }

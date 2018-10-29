@@ -26,7 +26,7 @@ SECRET_KEY = 'h31=@j2t#$skb6+!85g4-3-ww^2k3t=rq^#5d#2!j=2-qy1p7p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '35.204.253.189', '35.204.214.220']
+ALLOWED_HOSTS = ['justdjango-react-django-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -97,16 +97,15 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'DjongoCluster',
-        'HOST': 'mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/dbname_?',
+        'HOST': 'djongocluster-shard-00-00-7w68m.mongodb.net',
         'PORT': 27017,
-        # 'USER': 'SES-admin',
-        # 'PASSWORD': 'adminadmin',
-        # 'SSL': True,
+        'USER': 'SES-admin',
+        'PASSWORD': 'adminadmin',
+        'SSL': True,
     },
     'cassandra': {
         'ENGINE': 'django_cassandra_engine',
@@ -114,7 +113,7 @@ DATABASES = {
         'USER': 'user',
         'PASSWORD': 'pass',
         'TEST_NAME': 'test_dbTimeData',
-        'HOST': 'cassandra-1-cassandra-0.cassandra-1-cassandra-svc.default.svc.cluster.local',
+        'HOST': 'ec2-3-120-207-159.eu-central-1.compute.amazonaws.com',
         # 'PORT': 9042,
         'OPTIONS': {
             'replication': {
@@ -172,7 +171,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = 'http://storage.googleapis.com/wacc-ses-final/static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
